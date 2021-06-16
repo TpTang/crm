@@ -14,6 +14,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/*
+ * 处理客户端"添加"操作的业务逻辑
+ */
 @WebServlet("/save")
 public class SaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,13 +26,13 @@ public class SaveServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         CustomerDao dao = new CustomerDao();
-
+        //将请求参数映射到 Customer bean
         Customer customer = new Customer();
         customer.setName(request.getParameter("name"));
         customer.setAge(Integer.parseInt(request.getParameter("age")));
         customer.setHeight(Double.parseDouble(request.getParameter("height")));
 
-        //保存数据到数据库
+        //bean持久化到数据库并重定向
         if(dao.save(customer)){
             //重定向到list
             response.sendRedirect( "/crm/list");
