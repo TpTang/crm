@@ -14,6 +14,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+//一个Servlet处理多个业务逻辑
+
 @WebServlet("/customer/*")
 public class CustomerServlet extends HttpServlet {
 
