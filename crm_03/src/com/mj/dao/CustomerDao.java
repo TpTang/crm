@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //DAO:Data(base) Access Object - 负责与数据库交互数据
+
 public class CustomerDao { //命名规则：最好是 数据库表名+Dao
 
     /**
