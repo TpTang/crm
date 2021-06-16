@@ -7,12 +7,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//DAO:Data(base) Access Object - 负责与数据库交互数据
+/*
+ * DAO:Data(base) Access Object - 负责与数据库交互数据
+ */
 public class CustomerDao { //命名规则：最好是 数据库表名+Dao
 
     /**
      * 将给定的bean保存到数据库
-     * @param customer 客户
+     * @param customer 客户bean
      * @return 保存成功与否
      */
     public boolean save(Customer customer){
@@ -27,7 +29,7 @@ public class CustomerDao { //命名规则：最好是 数据库表名+Dao
      */
     public List<Customer> query(){
         String sql = "SELECT `id`,`name`, `age`, `height` FROM `customer`";
-
+        
         List<Customer> customers = DBUtil.query(sql, (rs, row)->{
             Customer customer = new Customer();
             customer.setId(rs.getInt("id"));
