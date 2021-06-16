@@ -11,7 +11,7 @@ import java.util.Properties;
 //封装JDBC
 public class DBUtil {
     //通过Druid数据库连接池封装JDBC
-     private static DataSource ds;
+    private static DataSource ds;
     static{
         try(InputStream is = DBUtil.class.getClassLoader().getResourceAsStream("druid.properties")) {
             Properties properties = new Properties();
@@ -33,7 +33,7 @@ public class DBUtil {
      */
     public static int update(String sql, Object ...args){
         try {
-            Connection conn = ds.getConnection();//通过数据库连接池拿到数据库连接对象
+            Connection conn = ds.getConnection();//通过数据库连接池拿到数据库连接对象 //不需要再手动注册驱动、手动关闭连接
             try(PreparedStatement pstmt = conn.prepareStatement(sql)){
                 //设置参数
                 for (int i = 0; i <args.length ; i++) {
@@ -58,7 +58,7 @@ public class DBUtil {
         if(mapper == null) return null;
         ResultSet rs = null;
         try {
-            Connection conn = ds.getConnection(); //不需要关闭
+            Connection conn = ds.getConnection();  //拿到连接对象
             try(PreparedStatement pstmt = conn.prepareStatement(sql)){
                 //设置参数
                 for (int i = 0; i < args.length; i++) {
@@ -96,7 +96,7 @@ public class DBUtil {
         T map(ResultSet rs, int row) throws SQLException;
     }
 
-    //通过配置文件直接封装
+    //通过properties配置文件简单封装
 //     private static String driverClassName;
 //     private static String url;
 //     private static String username;
