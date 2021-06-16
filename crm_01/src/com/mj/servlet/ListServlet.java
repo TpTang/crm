@@ -20,18 +20,19 @@ public class ListServlet extends HttpServlet {
 
     /*
         转发（forward）：只能在同一个context内转发（context：上下文、等同于整个项目） 浏览器URL不会改变
-        可以通过request.setAttribute request.getAttribute 实现多个Servlet、JSP共享数据（仅仅是在一次请求中：依赖于request对象存储）
+        可以通过request.setAttribute request.getAttribute 实现多个Servlet、JSP共享数据（仅仅是在一次请求中-依赖于request对象存储：
+                                                                                     request对象里的attribute是个HashMap）
         重定向：服务器通知客户端重新发送新的请求到任意URL，浏览器URL会改变
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*
         目标：JSP不写一句Java代码  Servlet不写一句HTML代码  JSP本质Servlet
          */
-        //从数据库获取数据
+        //模拟从数据库获取数据
         List<Customer> customers = Data.getCustomers();
         //将数据存储到request对象中
         request.setAttribute("customers", customers);
-        //转发到list.jsp进行数据展示
+        //转发到list.jsp进行页面展示
         request.getRequestDispatcher("/page/list.jsp").forward(request, response);
     }
 
