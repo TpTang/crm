@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 
-//封装JDBC
+//spring JDBC封装JDBC
 public class DBUtil {
     private static JdbcTemplate tpl;
     static{
@@ -22,7 +22,7 @@ public class DBUtil {
             //通过工厂类创建数据源（数据库连接池）
             DataSource ds = DruidDataSourceFactory.createDataSource(properties);
             tpl = new JdbcTemplate(ds);
-
+            
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
